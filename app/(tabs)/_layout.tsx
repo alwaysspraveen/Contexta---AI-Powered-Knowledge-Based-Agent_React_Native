@@ -1,35 +1,21 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+import { Tabs } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import "../../global.css";
+export default function TabsLayout() {
   return (
+     <SafeAreaView
+          className="flex-1 bg-[#111111]"
+          edges={["top", "left", "right", "bottom"]}
+        >
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+        tabBarStyle: { display: "none" }, // 👈 hides entire tab bar
+      }}
+    >
+      <Tabs.Screen name="index" />
+      <Tabs.Screen name="explore" />
     </Tabs>
+    </SafeAreaView>
   );
 }

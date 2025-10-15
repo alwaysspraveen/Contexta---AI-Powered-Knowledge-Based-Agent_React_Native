@@ -1,0 +1,46 @@
+// src/components/TopHeader.tsx
+import Menu from "@/assets/icon/menu.svg";
+
+import Incognito from "@/assets/icon/incognito.svg";
+
+import Shine from "@/assets/icon/shine.svg";
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
+type Props = {
+  onMenu?: () => void;
+  onNotification?: () => void;
+};
+export default function TopHeader({ onMenu, onNotification }: Props) {
+  return (
+    <View className={`flex-row items-center justify-between pb-1`}>
+      {/* Left Menu Button */}
+      <TouchableOpacity
+        className="p-3 rounded-full active:opacity-70 bg-[#ffffff10] z-20"
+        onPress={onMenu}
+        accessibilityRole="button"
+        accessibilityLabel="Open menu"
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      >
+        <Menu width={22} height={22} color="#fff" />
+      </TouchableOpacity>
+
+      {/* Center CTA */}
+      <TouchableOpacity className="flex-row items-center gap-1.5 px-3.5 py-3 rounded-full bg-[#1630B260] active:opacity-80">
+        {/* <Shine width={22} height={22} color="#B5C1FF" /> */}
+        <Shine width={22} color="#B5C1FF" />
+        <Text className="text-[#B5C1FF] text-base font-semibold">Get Plus</Text>
+      </TouchableOpacity>
+
+      {/* Right Settings Icon */}
+      <TouchableOpacity
+        className="p-3 rounded-full active:opacity-70 bg-[#ffffff10] z-20"
+        onPress={onNotification}
+        accessibilityRole="button"
+        accessibilityLabel="Open menu"
+        hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+      >
+        <Incognito width={22} height={22} color="#fff" />
+      </TouchableOpacity>
+    </View>
+  );
+}
